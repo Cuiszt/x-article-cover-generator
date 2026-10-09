@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X 长文封面生成器 · X Article Cover Generator</title>
+<meta name="description" content="给 AI 创作者的 X 长文封面与配图生成器：6 种风格，导出 5:2 / 16:9 / 1:1 PNG，附 AI 生图提示词。纯前端，离线可用，MIT 开源。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">X</div>
+    <div>
+      <h1 data-i18n="appName">X 长文封面生成器</h1>
+      <p data-i18n="tagline">给 AI 创作者的封面 &amp; 配图工具</p>
+    </div>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="zh" class="on">中文</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="panel controls">
+    <section>
+      <h2 data-i18n="content">内容</h2>
+      <label><span data-i18n="title">标题</span>
+        <textarea id="title" rows="3"></textarea>
+        <small data-i18n="titleHint"></small>
+      </label>
+      <label><span data-i18n="subtitle">副标题（可选）</span><input id="subtitle" type="text"></label>
+      <div class="row2">
+        <label><span data-i18n="handle">作者账号</span><input id="handle" type="text"></label>
+        <label><span data-i18n="tag">角标（可选）</span><input id="tag" type="text"></label>
+      </div>
+      <button type="button" id="reset" class="ghost" data-i18n="reset">恢复示例</button>
+    </section>
+    <section>
+      <h2 data-i18n="style">风格</h2>
+      <div id="styleGrid" class="style-grid"></div>
+    </section>
+    <section>
+      <h2 data-i18n="palette">配色</h2>
+      <div id="palettes" class="palettes"></div>
+    </section>
+    <section>
+      <h2 data-i18n="size">尺寸</h2>
+      <div id="sizes" class="seg"></div>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="panel preview-wrap">
+      <div class="preview-head">
+        <h2 data-i18n="preview">预览</h2>
+        <span id="dims" class="dims"></span>
+      </div>
+      <div class="canvas-box"><canvas id="canvas" aria-label="cover preview"></canvas></div>
+      <div class="actions">
+        <label class="check"><input type="checkbox" id="hd"> <span data-i18n="hd">2 倍高清导出</span></label>
+        <div class="spacer"></div>
+        <button type="button" id="exportAll" class="ghost" data-i18n="exportAll">下载全部尺寸</button>
+        <button type="button" id="export" class="primary" data-i18n="exportPng">下载 PNG</button>
+      </div>
+      <p class="tips" data-i18n="tips"></p>
+    </div>
+
+    <div class="panel prompts">
+      <h2 data-i18n="promptPanel">AI 生图提示词</h2>
+      <p class="muted" data-i18n="promptIntro"></p>
+      <div class="prompt-group">
+        <h3 data-i18n="bgOnly"></h3>
+        <div class="prompt"><pre id="pBgZh"></pre><button type="button" class="copy" data-target="pBgZh" data-i18n="copy">复制</button></div>
+        <div class="prompt"><pre id="pBgEn"></pre><button type="button" class="copy" data-target="pBgEn" data-i18n="copy">复制</button></div>
+      </div>
+      <div class="prompt-group">
+        <h3 data-i18n="withText"></h3>
+        <div class="prompt"><pre id="pTextZh"></pre><button type="button" class="copy" data-target="pTextZh" data-i18n="copy">复制</button></div>
+        <div class="prompt"><pre id="pTextEn"></pre><button type="button" class="copy" data-target="pTextEn" data-i18n="copy">复制</button></div>
+      </div>
+      <div class="prompt-group">
+        <h3 data-i18n="mj"></h3>
+        <div class="prompt"><pre id="pMj"></pre><button type="button" class="copy" data-target="pMj" data-i18n="copy">复制</button></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot" data-i18n="footer">MIT 开源</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/text.js"></script>
+<script src="js/styles.js"></script>
+<script src="js/prompts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
